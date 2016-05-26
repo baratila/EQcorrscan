@@ -11,4 +11,6 @@ those actions and highlighted in the catalogue plot window.  This will end up \
 being a dog to write I think.  Any help would be appreciated!
 
 Part of EQcorrscan, copyright the authors 2016, 2015. Licencec under the LGPL.
+
+... note:: Work in progress
 """

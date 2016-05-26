@@ -6,6 +6,8 @@ utils.parameters functions for writing and reading.
 This file is part of EQcorrscan, copyright the authors 2016.
 
 Licence: LGPL
+
+... note:: Work in progress
 """
 
 class ParameterSetup:
