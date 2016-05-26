@@ -73,49 +73,49 @@ def coherence_test(stream, stations, nodes, lags, wlen):
             dailycoherence[i][j] = coherence(window)
     return dailycoherence
 
-# if __name__ == '__main__':
-#     import sys
-#     if len(sys.argv) == 1:
-#         raise IOError("Needs arguments, e.g. --coherence 2009/07/14")
-#     else:
-#         if sys.argv[1] == "--coherence":
-#             date = sys.argv[2]
-#             stream = read('test_data/*'+date.split('/')[0]+'-' +
-#                           date.split('/')[1]+'-'+date.split('/')[2] +
-#                           '-processed.ms')
-#             if not len(stream) == 0:
-#                 import os
-#                 path = os.path.dirname(os.path.abspath(__file__))
-#                 sys.path.insert(0, path[0:len(path)-5])
-#                 from core import bright_lights
-#                 from utils import plotting
-#                 # Use the brightness function to search for possible
-#                 # templates
-#                 # First read in the travel times
-#                 print('Reading in the original grids')
-#                 stations, allnodes, alllags = \
-#                     bright_lights._read_tt(nllpath, stations,
-#                                            brightdef.phase)
-#                 # Resample the grid to allow us to run it quickly!
-#                 print('Cutting the grid')
-#                 stations, nodes, lags = \
-#                     bright_lights._resample_grid(stations, allnodes,
-#                                                  alllags,
-#                                                  brightdef.volume,
-#                                                  brightdef.resolution)
-#                 # Remove lags that have a similar network moveout, e.g.
-#                 # the sum of the differences in moveouts is small.
-#                 print("Removing simlar lags")
-#                 stations, nodes, lags = \
-#                     bright_lights._rm_similarlags(stations, nodes, lags,
-#                                                   brightdef.nodesimthresh)
-#                 print("Plotting new grid")
-#                 plotting.threeD_gridplot(nodes)
-#                 dailycoherence = coherence_test(stream, stations, nodes,
-#                                                 lags,
-#                                                 templatedef.length)
-#             else:
-#                 raise IOError("No traces read in for this day, are they " +
-#                               "processed?")
-#         else:
-#             raise IOError("I only know --coherence at the moment")
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) == 1:
+        raise IOError("Needs arguments, e.g. --coherence 2009/07/14")
+    else:
+        if sys.argv[1] == "--coherence":
+            date = sys.argv[2]
+            stream = read('test_data/*'+date.split('/')[0]+'-' +
+                          date.split('/')[1]+'-'+date.split('/')[2] +
+                          '-processed.ms')
+            if not len(stream) == 0:
+                import os
+                path = os.path.dirname(os.path.abspath(__file__))
+                sys.path.insert(0, path[0:len(path)-5])
+                from core import bright_lights
+                from utils import plotting
+                # Use the brightness function to search for possible
+                # templates
+                # First read in the travel times
+                print('Reading in the original grids')
+                stations, allnodes, alllags = \
+                    bright_lights._read_tt(nllpath, stations,
+                                           brightdef.phase)
+                # Resample the grid to allow us to run it quickly!
+                print('Cutting the grid')
+                stations, nodes, lags = \
+                    bright_lights._resample_grid(stations, allnodes,
+                                                 alllags,
+                                                 brightdef.volume,
+                                                 brightdef.resolution)
+                # Remove lags that have a similar network moveout, e.g.
+                # the sum of the differences in moveouts is small.
+                print("Removing simlar lags")
+                stations, nodes, lags = \
+                    bright_lights._rm_similarlags(stations, nodes, lags,
+                                                  brightdef.nodesimthresh)
+                print("Plotting new grid")
+                plotting.threeD_gridplot(nodes)
+                dailycoherence = coherence_test(stream, stations, nodes,
+                                                lags,
+                                                templatedef.length)
+            else:
+                raise IOError("No traces read in for this day, are they " +
+                              "processed?")
+        else:
+            raise IOError("I only know --coherence at the moment")
